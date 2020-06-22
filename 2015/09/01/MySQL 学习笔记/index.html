@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MySQL,数据库," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL 是最好的 RDBMS(Relational Database Management System：关系数据库管理系统) 应用软件之一。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 学习笔记">
+<meta property="og:url" content="http://yoursite.com/2015/09/01/MySQL%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="小千世界">
+<meta property="og:description" content="简介MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL 是最好的 RDBMS(Relational Database Management System：关系数据库管理系统) 应用软件之一。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2015-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-06-22T02:36:12.778Z">
+<meta property="article:author" content="BlazeHu">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2015/09/01/MySQL 学习笔记/"/>
+
+
+
+
+
+  <title>MySQL 学习笔记 | 小千世界</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小千世界</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2015/09/01/MySQL%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BlazeHu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小千世界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL 学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-09-01T00:00:00+08:00">
+                2015-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>MySQL 是最流行的关系型数据库管理系统，在 WEB 应用方面 MySQL 是最好的 RDBMS(Relational Database Management System：关系数据库管理系统) 应用软件之一。</p>
+<a id="more"></a>
+<p><span style="color: red">Server version: 5.7.17 MySQL Community Server (GPL)</span></p>
+<h4 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h4><h5 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h5><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">mysql</span> <span class="string">-u用户名</span> <span class="string">-p用户密码</span> <span class="string">（如果连接远端机器加上参数</span> <span class="string">-h</span> <span class="string">远端机器IP</span>  <span class="string">-P</span> <span class="string">端口）</span></span><br><span class="line"><span class="comment"># 例子</span></span><br><span class="line"><span class="string">mysql</span> <span class="string">-h</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="string">-P</span> <span class="number">3306</span> <span class="string">-uroot</span> <span class="string">-ppassword</span></span><br></pre></td></tr></table></figure>
+<h5 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h5><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="用户权限管理"><a href="#用户权限管理" class="headerlink" title="用户权限管理"></a>用户权限管理</h4><h5 id="新建用户"><a href="#新建用户" class="headerlink" title="新建用户"></a>新建用户</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create<span class="built_in"> user </span><span class="string">'blazehu'</span>@<span class="string">'127.0.0.1'</span> identified by <span class="string">'readonly'</span>;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+<h5 id="查看用户"><a href="#查看用户" class="headerlink" title="查看用户"></a>查看用户</h5><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select Host, User from mysql.user;</span><br><span class="line"><span class="code">+-----------+</span>-----------+</span><br><span class="line">| Host      | User      |</span><br><span class="line"><span class="code">+-----------+</span>-----------+</span><br><span class="line">| %         | root      |</span><br><span class="line">| 127.0.0.1 | blazehu   |</span><br><span class="line">| 127.0.0.1 | root      |</span><br><span class="line">| localhost | mysql.sys |</span><br><span class="line">| localhost | root      |</span><br><span class="line"><span class="code">+-----------+</span>-----------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; drop<span class="built_in"> user </span><span class="string">'blazehu'</span>@<span class="string">'127.0.0.1'</span>;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="用户赋权"><a href="#用户赋权" class="headerlink" title="用户赋权"></a>用户赋权</h5><p>使用 grant 增加新用户设置用户权限等 （可以直接对 mysql.user 用户表操作，来修改用户密码等）</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">grant</span> <span class="keyword">select</span>, <span class="keyword">update</span>, <span class="keyword">insert</span>, <span class="keyword">delete</span> <span class="keyword">on</span> test.* <span class="keyword">to</span> <span class="string">'blazehu'</span>@<span class="string">'127.0.0.1'</span> identified <span class="keyword">by</span> <span class="string">'123456'</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected, <span class="number">1</span> <span class="built_in">warning</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="刷新权限"><a href="#刷新权限" class="headerlink" title="刷新权限"></a>刷新权限</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, <span class="number">0</span> rows affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="查看用户权限"><a href="#查看用户权限" class="headerlink" title="查看用户权限"></a>查看用户权限</h5><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show grants for <span class="emphasis">'blazehu'</span>@<span class="emphasis">'127.0.0.1'</span>;</span><br><span class="line"><span class="code">+---------------------------------------------------------------------------+</span></span><br><span class="line">| Grants for blazehu@127.0.0.1                                              |</span><br><span class="line"><span class="code">+---------------------------------------------------------------------------+</span></span><br><span class="line">| GRANT USAGE ON <span class="strong">*.*</span> TO <span class="emphasis">'blazehu'</span>@<span class="emphasis">'127.0.0.1'</span>                               |</span><br><span class="line">| GRANT SELECT, INSERT, UPDATE, DELETE ON <span class="string">`test`.* TO '</span>blazehu'@<span class="emphasis">'127.0.0.1'</span> |</span><br><span class="line"><span class="code">+---------------------------------------------------------------------------+</span></span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="用户重命名"><a href="#用户重命名" class="headerlink" title="用户重命名"></a>用户重命名</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; rename<span class="built_in"> user </span><span class="string">'blazehu'</span>@<span class="string">'127.0.0.1'</span> <span class="keyword">to</span> <span class="string">'blaze'</span>@<span class="string">'127.0.0.1'</span>;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h5><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">update</span> mysql.<span class="keyword">user</span> <span class="keyword">set</span> authentication_string=<span class="keyword">password</span>(<span class="string">'123456'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'blaze'</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected, <span class="number">1</span> <span class="built_in">warning</span> (<span class="number">0.00</span> sec)</span><br><span class="line"><span class="keyword">Rows</span> matched: <span class="number">1</span>  Changed: <span class="number">0</span>  Warnings: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">set</span> <span class="keyword">password</span> <span class="keyword">for</span> <span class="string">'blaze'</span>@<span class="string">'127.0.0.1'</span>=<span class="keyword">password</span>(<span class="string">'123456'</span>);</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected, <span class="number">1</span> <span class="built_in">warning</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<p>也可以使用 mysqladmin 命令来修改密码。</p>
+<h4 id="数据库基础操作"><a href="#数据库基础操作" class="headerlink" title="数据库基础操作"></a>数据库基础操作</h4><h5 id="显示数据库列表"><a href="#显示数据库列表" class="headerlink" title="显示数据库列表"></a>显示数据库列表</h5><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line"><span class="code">+--------------------+</span></span><br><span class="line">| Database           |</span><br><span class="line"><span class="code">+--------------------+</span></span><br><span class="line">| information<span class="emphasis">_schema |</span></span><br><span class="line"><span class="emphasis">| mysql              |</span></span><br><span class="line"><span class="emphasis">| performance_</span>schema |</span><br><span class="line">| sys                |</span><br><span class="line">| test               |</span><br><span class="line"><span class="code">+--------------------+</span></span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h5><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database test<span class="built_in"> default </span>character <span class="builtin-name">set</span> utf8;;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="选择数据库"><a href="#选择数据库" class="headerlink" title="选择数据库"></a>选择数据库</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">mysql&gt;</span><span class="bash"> use <span class="built_in">test</span></span></span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure>
+
+<h5 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h5><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">drop</span> <span class="keyword">database</span> test;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据表基础操作"><a href="#数据表基础操作" class="headerlink" title="数据表基础操作"></a>数据表基础操作</h4><h5 id="显示数据表"><a href="#显示数据表" class="headerlink" title="显示数据表"></a>显示数据表</h5><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show tables;</span><br><span class="line">+-----------------------------------+</span><br><span class="line">|<span class="string"> Tables_in_test                    </span>|</span><br><span class="line">+-----------------------------------+</span><br><span class="line">|<span class="string"> account_permission                </span>|</span><br><span class="line">|<span class="string"> account_userpermission            </span>|</span><br><span class="line">|<span class="string"> auth_group                        </span>|</span><br><span class="line">|<span class="string"> auth_group_permissions            </span>|</span><br><span class="line">|<span class="string"> auth_permission                   </span>|</span><br><span class="line">|<span class="string"> auth_user                         </span>|</span><br><span class="line">|<span class="string"> auth_user_groups                  </span>|</span><br><span class="line">|<span class="string"> auth_user_user_permissions        </span>|</span><br><span class="line">|<span class="string"> authtoken_token                   </span>|</span><br><span class="line">|<span class="string"> django_admin_log                  </span>|</span><br><span class="line">|<span class="string"> django_cas_ng_proxygrantingticket </span>|</span><br><span class="line">|<span class="string"> django_cas_ng_sessionticket       </span>|</span><br><span class="line">|<span class="string"> django_content_type               </span>|</span><br><span class="line">|<span class="string"> django_migrations                 </span>|</span><br><span class="line">|<span class="string"> django_session                    </span>|</span><br><span class="line">+-----------------------------------+</span><br><span class="line">15 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="查看数据库表结构"><a href="#查看数据库表结构" class="headerlink" title="查看数据库表结构"></a>查看数据库表结构</h5><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; desc auth_user;</span><br><span class="line">+--------------+--------------+------+-----+---------+----------------+</span><br><span class="line">|<span class="string"> Field        </span>|<span class="string"> Type         </span>|<span class="string"> Null </span>|<span class="string"> Key </span>|<span class="string"> Default </span>|<span class="string"> Extra          </span>|</span><br><span class="line">+--------------+--------------+------+-----+---------+----------------+</span><br><span class="line">|<span class="string"> id           </span>|<span class="string"> int(11)      </span>|<span class="string"> NO   </span>|<span class="string"> PRI </span>|<span class="string"> NULL    </span>|<span class="string"> auto_increment </span>|</span><br><span class="line">|<span class="string"> password     </span>|<span class="string"> varchar(128) </span>|<span class="string"> NO   </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> last_login   </span>|<span class="string"> datetime(6)  </span>|<span class="string"> YES  </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> is_superuser </span>|<span class="string"> tinyint(1)   </span>|<span class="string"> NO   </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> username     </span>|<span class="string"> varchar(150) </span>|<span class="string"> NO   </span>|<span class="string"> UNI </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> first_name   </span>|<span class="string"> varchar(30)  </span>|<span class="string"> NO   </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> last_name    </span>|<span class="string"> varchar(150) </span>|<span class="string"> NO   </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> email        </span>|<span class="string"> varchar(254) </span>|<span class="string"> NO   </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> is_staff     </span>|<span class="string"> tinyint(1)   </span>|<span class="string"> NO   </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> is_active    </span>|<span class="string"> tinyint(1)   </span>|<span class="string"> NO   </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">|<span class="string"> date_joined  </span>|<span class="string"> datetime(6)  </span>|<span class="string"> NO   </span>|<span class="string">     </span>|<span class="string"> NULL    </span>|<span class="string">                </span>|</span><br><span class="line">+--------------+--------------+------+-----+---------+----------------+</span><br><span class="line">11 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="删除数据表"><a href="#删除数据表" class="headerlink" title="删除数据表"></a>删除数据表</h5><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">drop</span> <span class="keyword">table</span> auth_user;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.02</span> sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="查看建表语句"><a href="#查看建表语句" class="headerlink" title="查看建表语句"></a>查看建表语句</h5><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show <span class="keyword">create</span> table auth_user \G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">       Table: auth_user</span><br><span class="line"><span class="keyword">Create</span> Table: <span class="keyword">CREATE</span> TABLE <span class="symbol">`auth_user`</span> (</span><br><span class="line">  <span class="symbol">`id`</span> int(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  <span class="symbol">`password`</span> varchar(<span class="number">128</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`last_login`</span> datetime(<span class="number">6</span>) DEFAULT <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`is_superuser`</span> tinyint(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`username`</span> varchar(<span class="number">150</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`first_name`</span> varchar(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`last_name`</span> varchar(<span class="number">150</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`email`</span> varchar(<span class="number">254</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`is_staff`</span> tinyint(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`is_active`</span> tinyint(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="symbol">`date_joined`</span> datetime(<span class="number">6</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (<span class="symbol">`id`</span>),</span><br><span class="line">  <span class="keyword">UNIQUE</span> <span class="keyword">KEY</span> <span class="symbol">`username`</span> (<span class="symbol">`username`</span>)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=<span class="number">3</span> DEFAULT CHARSET=utf8mb4</span><br><span class="line"><span class="number">1</span> row <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">ERROR:</span><br><span class="line">No query specified</span><br></pre></td></tr></table></figure>
+
+<h5 id="数据库表增删改查"><a href="#数据库表增删改查" class="headerlink" title="数据库表增删改查"></a>数据库表增删改查</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">插入： <span class="keyword">insert</span> <span class="keyword">into</span> tablename <span class="keyword">values</span>(<span class="string">""</span>, <span class="string">""</span>);</span><br><span class="line">删除： <span class="keyword">delete</span> <span class="keyword">from</span> tablename <span class="keyword">where</span>  ...;</span><br><span class="line">更新： <span class="keyword">update</span> tablename <span class="keyword">set</span> a=<span class="string">""</span> <span class="keyword">where</span> ...;</span><br><span class="line">查找： <span class="keyword">select</span> * <span class="keyword">from</span> tablename <span class="keyword">where</span> ...;</span><br></pre></td></tr></table></figure>
+
+<h5 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h5><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">alter</span> <span class="keyword">table</span> auth_user <span class="keyword">add</span> key test__name(<span class="type">name</span>) <span class="keyword">using</span> btree;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.03</span> sec)</span><br><span class="line">Records: <span class="number">0</span>  Duplicates: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h4><h5 id="查看数据库变量信息"><a href="#查看数据库变量信息" class="headerlink" title="查看数据库变量信息"></a>查看数据库变量信息</h5><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show variables like "character%";</span><br><span class="line"><span class="code">+--------------------------+</span>----------------------------+</span><br><span class="line">| Variable<span class="emphasis">_name            | Value                      |</span></span><br><span class="line"><span class="emphasis">+--------------------------+----------------------------+</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_client     | latin1                     |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_connection | latin1                     |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_database   | utf8mb4                    |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_filesystem | binary                     |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_results    | latin1                     |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_server     | latin1                     |</span></span><br><span class="line"><span class="emphasis">| character_</span>set<span class="emphasis">_system     | utf8                       |</span></span><br><span class="line"><span class="emphasis">| character_</span>sets<span class="emphasis">_dir       | /usr/share/mysql/charsets/ |</span></span><br><span class="line"><span class="emphasis">+--------------------------+----------------------------+</span></span><br><span class="line"><span class="emphasis">8 rows in set (0.01 sec)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="查看数据库大小"><a href="#查看数据库大小" class="headerlink" title="查看数据库大小"></a>查看数据库大小</h5><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select concat(round(sum(DATA<span class="emphasis">_LENGTH/1024/1024),2),'MB') as data from information_</span>schema.TABLES where table<span class="emphasis">_schema='test';</span></span><br><span class="line"><span class="emphasis">+--------+</span></span><br><span class="line"><span class="emphasis">| data   |</span></span><br><span class="line"><span class="emphasis">+--------+</span></span><br><span class="line"><span class="emphasis">| 0.56MB |</span></span><br><span class="line"><span class="emphasis">+--------+</span></span><br><span class="line"><span class="emphasis">1 row in set (0.01 sec)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="查看数据表大小"><a href="#查看数据表大小" class="headerlink" title="查看数据表大小"></a>查看数据表大小</h5><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT TABLE_NAME, round(DATA_LENGTH/1024/1024,2) as data ,TABLE_ROWS FROM information_schema.TABLES WHERE TABLE_SCHEMA='test' order by data desc limit 10;</span><br><span class="line">+---------------------------+------+------------+</span><br><span class="line">|<span class="string"> TABLE_NAME                </span>|<span class="string"> data </span>|<span class="string"> TABLE_ROWS </span>|</span><br><span class="line">+---------------------------+------+------------+</span><br><span class="line">|<span class="string"> django_session            </span>|<span class="string"> 4.45 </span>|<span class="string">        410 </span>|</span><br><span class="line">|<span class="string"> cloud_hostmaintenanceuser </span>|<span class="string"> 1.52 </span>|<span class="string">       7648 </span>|</span><br><span class="line">|<span class="string"> storage_cephbucket        </span>|<span class="string"> 1.52 </span>|<span class="string">       1284 </span>|</span><br><span class="line">|<span class="string"> redis_draft_service_log   </span>|<span class="string"> 0.52 </span>|<span class="string">        990 </span>|</span><br><span class="line">|<span class="string"> kubemetrics_nodeinfos     </span>|<span class="string"> 0.42 </span>|<span class="string">       1235 </span>|</span><br><span class="line">|<span class="string"> saltstack_saltgrainsitems </span>|<span class="string"> 0.30 </span>|<span class="string">       1409 </span>|</span><br><span class="line">|<span class="string"> auth_user_groups          </span>|<span class="string"> 0.23 </span>|<span class="string">       3055 </span>|</span><br><span class="line">|<span class="string"> storage_glusterbrick      </span>|<span class="string"> 0.22 </span>|<span class="string">       1328 </span>|</span><br><span class="line">|<span class="string"> saltstack_addonversion    </span>|<span class="string"> 0.17 </span>|<span class="string">       1283 </span>|</span><br><span class="line">|<span class="string"> auth_user                 </span>|<span class="string"> 0.14 </span>|<span class="string">       1171 </span>|</span><br><span class="line">+---------------------------+------+------------+</span><br><span class="line">10 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="修改默认分隔符"><a href="#修改默认分隔符" class="headerlink" title="修改默认分隔符"></a>修改默认分隔符</h5><p>默认分隔符为 “;”</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delimiter <span class="comment">//</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="MySQL-主从，跳过一个错误"><a href="#MySQL-主从，跳过一个错误" class="headerlink" title="MySQL 主从，跳过一个错误"></a>MySQL 主从，跳过一个错误</h5><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> GLOBAL <span class="comment">SQL_SLAVE_SKIP_COUNTER = 1</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过脚本操作数据库"><a href="#通过脚本操作数据库" class="headerlink" title="通过脚本操作数据库"></a>通过脚本操作数据库</h4><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -h host -P<span class="built_in"> port </span>-uUsername -pPassword -e <span class="string">"command"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="备份和还原"><a href="#备份和还原" class="headerlink" title="备份和还原"></a>备份和还原</h4><h5 id="备份数据库"><a href="#备份数据库" class="headerlink" title="备份数据库"></a>备份数据库</h5><h6 id="mysqldump-命令"><a href="#mysqldump-命令" class="headerlink" title="mysqldump 命令"></a>mysqldump 命令</h6><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 包括数据库中的数据</span></span><br><span class="line">root<span class="variable">@demo</span><span class="symbol">:/</span><span class="comment"># mysqldump -uroot -ppassword test &gt; test.sql</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 不包括数据库中的数据</span></span><br><span class="line">root<span class="variable">@demo</span><span class="symbol">:/</span><span class="comment"># mysqldump -uroot -ppassword -d test &gt; test.sql</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据库中的某张表（包含数据）</span></span><br><span class="line">root<span class="variable">@demo</span><span class="symbol">:/</span><span class="comment"># mysqldump -uroot -ppassword test auth_user &gt; test.sql</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据库中的某张表（不包含数据）</span></span><br><span class="line">root<span class="variable">@demo</span><span class="symbol">:/</span><span class="comment"># mysqldump -uroot -ppassword -d test auth_user &gt; test.sql</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="还原数据库"><a href="#还原数据库" class="headerlink" title="还原数据库"></a>还原数据库</h5><h6 id="mysql-命令"><a href="#mysql-命令" class="headerlink" title="mysql 命令"></a>mysql 命令</h6><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root<span class="variable">@demo</span><span class="symbol">:/</span><span class="comment"># mysql -uroot -ppassword test &lt; test.sql</span></span><br></pre></td></tr></table></figure>
+<h6 id="source-命令"><a href="#source-命令" class="headerlink" title="source 命令"></a>source 命令</h6><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; source test.sql;</span><br><span class="line">Query OK, <span class="number">1</span> row affected (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="备份数据表"><a href="#备份数据表" class="headerlink" title="备份数据表"></a>备份数据表</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table auth_user_bak as select * <span class="keyword">from</span> auth_user;</span><br><span class="line">Query OK, <span class="number">1</span> row affected (<span class="number">0.07</span> sec)</span><br><span class="line">Records: <span class="number">1</span>  Duplicates: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="热备工具"><a href="#热备工具" class="headerlink" title="热备工具"></a>热备工具</h5><p>qpress 解压工具<br>percona-xtrabackup 热备工具</p>
+<h4 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h4><h5 id="在做数据库主从和备份的时候发现-dump-失败-？"><a href="#在做数据库主从和备份的时候发现-dump-失败-？" class="headerlink" title="在做数据库主从和备份的时候发现 dump 失败 ？"></a>在做数据库主从和备份的时候发现 dump 失败 ？</h5><p>mysqldump 失败的原因可能是 my.cnf <span style="color: red">“#innodb_force_recovery=1”</span> 参数没有注释掉，这个参数放开会导致数据库不能做 insert、update、dump 数据库等操作。</p>
+<h5 id="Ubuntu-12-04-安装-mysql-python-提示找不到-mysql-config-？"><a href="#Ubuntu-12-04-安装-mysql-python-提示找不到-mysql-config-？" class="headerlink" title="Ubuntu 12.04 安装 mysql-python 提示找不到 mysql_config ？"></a>Ubuntu 12.04 安装 mysql-python 提示找不到 mysql_config ？</h5><p>安装 libmysqlclient-dev 库： <span style="color: red"> sudo apt-get install libmysqlclient-dev </span>。安装完成之后在 /etc/mysql 下会生成默认的 my.cnf 配置文件 ，系统优先读取该路径下的配置文件信息，这时候需要注意检查配置文件是否正确。</p>
+<h5 id="通过-shell-watch-mysql-的一些参数，发现-mysql-连接断开，报错-too-many-connection-？"><a href="#通过-shell-watch-mysql-的一些参数，发现-mysql-连接断开，报错-too-many-connection-？" class="headerlink" title="通过 shell watch mysql 的一些参数，发现 mysql 连接断开，报错 too many connection ？"></a>通过 shell watch mysql 的一些参数，发现 mysql 连接断开，报错 too many connection ？</h5><p>watch 每隔2秒钟 连接一次 mysql 导致数据库连接过多，数据库自动断开连不上。</p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><ul>
+<li><a href="https://www.runoob.com/mysql/mysql-tutorial.html" target="_blank" rel="noopener">https://www.runoob.com/mysql/mysql-tutorial.html</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/23/MySQL%20%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/" rel="prev" title="MySQL 主从同步">
+                MySQL 主从同步 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">BlazeHu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/blazehu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:viease@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连接"><span class="nav-number">2.</span> <span class="nav-text">连接</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#登录"><span class="nav-number">2.1.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#登出"><span class="nav-number">2.2.</span> <span class="nav-text">登出</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用户权限管理"><span class="nav-number">3.</span> <span class="nav-text">用户权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#新建用户"><span class="nav-number">3.1.</span> <span class="nav-text">新建用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看用户"><span class="nav-number">3.2.</span> <span class="nav-text">查看用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除用户"><span class="nav-number">3.3.</span> <span class="nav-text">删除用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用户赋权"><span class="nav-number">3.4.</span> <span class="nav-text">用户赋权</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#刷新权限"><span class="nav-number">3.5.</span> <span class="nav-text">刷新权限</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看用户权限"><span class="nav-number">3.6.</span> <span class="nav-text">查看用户权限</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用户重命名"><span class="nav-number">3.7.</span> <span class="nav-text">用户重命名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改密码"><span class="nav-number">3.8.</span> <span class="nav-text">修改密码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库基础操作"><span class="nav-number">4.</span> <span class="nav-text">数据库基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#显示数据库列表"><span class="nav-number">4.1.</span> <span class="nav-text">显示数据库列表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建数据库"><span class="nav-number">4.2.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#选择数据库"><span class="nav-number">4.3.</span> <span class="nav-text">选择数据库</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除数据库"><span class="nav-number">4.4.</span> <span class="nav-text">删除数据库</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据表基础操作"><span class="nav-number">5.</span> <span class="nav-text">数据表基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#显示数据表"><span class="nav-number">5.1.</span> <span class="nav-text">显示数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看数据库表结构"><span class="nav-number">5.2.</span> <span class="nav-text">查看数据库表结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除数据表"><span class="nav-number">5.3.</span> <span class="nav-text">删除数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看建表语句"><span class="nav-number">5.4.</span> <span class="nav-text">查看建表语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据库表增删改查"><span class="nav-number">5.5.</span> <span class="nav-text">数据库表增删改查</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建索引"><span class="nav-number">5.6.</span> <span class="nav-text">创建索引</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他常用命令"><span class="nav-number">6.</span> <span class="nav-text">其他常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查看数据库变量信息"><span class="nav-number">6.1.</span> <span class="nav-text">查看数据库变量信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看数据库大小"><span class="nav-number">6.2.</span> <span class="nav-text">查看数据库大小</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#查看数据表大小"><span class="nav-number">6.3.</span> <span class="nav-text">查看数据表大小</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改默认分隔符"><span class="nav-number">6.4.</span> <span class="nav-text">修改默认分隔符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#MySQL-主从，跳过一个错误"><span class="nav-number">6.5.</span> <span class="nav-text">MySQL 主从，跳过一个错误</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通过脚本操作数据库"><span class="nav-number">7.</span> <span class="nav-text">通过脚本操作数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#备份和还原"><span class="nav-number">8.</span> <span class="nav-text">备份和还原</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#备份数据库"><span class="nav-number">8.1.</span> <span class="nav-text">备份数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#mysqldump-命令"><span class="nav-number">8.1.1.</span> <span class="nav-text">mysqldump 命令</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#还原数据库"><span class="nav-number">8.2.</span> <span class="nav-text">还原数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#mysql-命令"><span class="nav-number">8.2.1.</span> <span class="nav-text">mysql 命令</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#source-命令"><span class="nav-number">8.2.2.</span> <span class="nav-text">source 命令</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#备份数据表"><span class="nav-number">8.3.</span> <span class="nav-text">备份数据表</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#热备工具"><span class="nav-number">8.4.</span> <span class="nav-text">热备工具</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关问题"><span class="nav-number">9.</span> <span class="nav-text">相关问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在做数据库主从和备份的时候发现-dump-失败-？"><span class="nav-number">9.1.</span> <span class="nav-text">在做数据库主从和备份的时候发现 dump 失败 ？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Ubuntu-12-04-安装-mysql-python-提示找不到-mysql-config-？"><span class="nav-number">9.2.</span> <span class="nav-text">Ubuntu 12.04 安装 mysql-python 提示找不到 mysql_config ？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#通过-shell-watch-mysql-的一些参数，发现-mysql-连接断开，报错-too-many-connection-？"><span class="nav-number">9.3.</span> <span class="nav-text">通过 shell watch mysql 的一些参数，发现 mysql 连接断开，报错 too many connection ？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">10.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BlazeHu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
